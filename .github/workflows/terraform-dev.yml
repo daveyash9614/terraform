@@ -1,0 +1,29 @@
+name: "Terraform - DEV"
+
+on:
+  push:
+    branches-ignore: [ "main" ]
+    paths:
+      - 'environments/dev/**'
+      - 'modules/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'environments/dev/**'
+      - 'modules/**'
+
+concurrency:
+  group: tf-dev-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  dev-pipeline:
+    uses: ./.github/workflows/master-terraform-base.yml
+    with:
+      environment: 'dev'
+      working_directory: './environments/dev'
+    secrets:
+      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+      AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
