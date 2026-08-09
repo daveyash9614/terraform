@@ -1,1 +1,29 @@
+name: "Terraform - PROD"
 
+on:
+  push:
+    branches-ignore: [ "main" ]
+    paths:
+      - 'environments/prod/**'
+      - 'modules/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'environments/prod/**'
+      - 'modules/**'
+
+concurrency:
+  group: tf-prod-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  prod-pipeline:
+    uses: ./.github/workflows/master-terraform-base.yml
+    with:
+      environment: 'prod'
+      working_directory: './environments/prod'
+    secrets:
+      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+      AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
