@@ -1,6 +1,7 @@
 name: "Terraform - UAT"
 
 on:
+  workflow_dispatch:
   push:
     branches-ignore: [ "main" ]
     paths:
