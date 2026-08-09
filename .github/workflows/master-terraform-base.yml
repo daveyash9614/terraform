@@ -98,7 +98,7 @@ jobs:
             const output = `### Environment: \`${env}\` 🚀
             #### Terraform Plan Status: \`Success\`
             *Plan Artifact Generated: \`tfplan-${env}-${{ github.sha }}\`*
-            
+
             *Pusher: @${{ github.actor }}, Event: \`${{ github.event_name }}\`*`;
 
             github.rest.issues.createComment({
