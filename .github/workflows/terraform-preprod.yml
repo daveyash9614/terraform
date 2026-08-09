@@ -1,1 +1,29 @@
+name: "Terraform - PREPROD"
 
+on:
+  push:
+    branches-ignore: [ "main" ]
+    paths:
+      - 'environments/pre-prod/**'
+      - 'modules/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'environments/pre-prod/**'
+      - 'modules/**'
+
+concurrency:
+  group: tf-preprod-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  preprod-pipeline:
+    uses: ./.github/workflows/master-terraform-base.yml
+    with:
+      environment: 'pre-prod'
+      working_directory: './environments/pre-prod'
+    secrets:
+      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+      AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
