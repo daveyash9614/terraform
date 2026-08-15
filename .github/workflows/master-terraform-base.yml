@@ -9,15 +9,6 @@ on:
       working_directory:
         required: true
         type: string
-    secrets:
-      AZURE_CLIENT_ID:
-        required: true
-      AZURE_CLIENT_SECRET:
-        required: true
-      AZURE_SUBSCRIPTION_ID:
-        required: true
-      AZURE_TENANT_ID:
-        required: true
 
 jobs:
   # --- JOB 1: Security & Quality Checks ---
@@ -60,7 +51,7 @@ jobs:
       - name: Azure SP Login
         uses: azure/login@v2
         with:
-          creds: '{"clientId":"${{ secrets.AZURE_CLIENT_ID }}","clientSecret":"${{ secrets.AZURE_CLIENT_SECRET }}","subscriptionId":"${{ secrets.AZURE_SUBSCRIPTION_ID }}","tenantId":"${{ secrets.AZURE_TENANT_ID }}"}'
+          creds: '{"clientId":"70a65af7-843e-4a9a-b801-75d5231c72f4","clientSecret":"M5c8Q~h0p3Zh3U1Cs.uuUpZWjkET9M0oBx6kgbzu","subscriptionId":"1b17fba3-24d7-46a8-be64-97ad373509ca","tenantId":"453f8321-3cb4-4f15-bf44-4544f4198c66"}'
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -123,7 +114,7 @@ jobs:
       - name: Azure SP Login
         uses: azure/login@v2
         with:
-          creds: '{"clientId":"${{ secrets.AZURE_CLIENT_ID }}","clientSecret":"${{ secrets.AZURE_CLIENT_SECRET }}","subscriptionId":"${{ secrets.AZURE_SUBSCRIPTION_ID }}","tenantId":"${{ secrets.AZURE_TENANT_ID }}"}'
+          creds: '{"clientId":"70a65af7-843e-4a9a-b801-75d5231c72f4","clientSecret":"M5c8Q~h0p3Zh3U1Cs.uuUpZWjkET9M0oBx6kgbzu","subscriptionId":"1b17fba3-24d7-46a8-be64-97ad373509ca","tenantId":"453f8321-3cb4-4f15-bf44-4544f4198c66"}'
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
