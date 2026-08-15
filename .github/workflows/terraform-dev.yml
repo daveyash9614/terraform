@@ -23,4 +23,3 @@ jobs:
     with:
       environment: 'dev'
       working_directory: './environments/dev'
-    secrets: inherit
